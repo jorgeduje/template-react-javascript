@@ -1,17 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { store } from './store/store';
+import { Provider } from 'react-redux'
+import { CssBaseline, ThemeProvider } from '@mui/material'
+
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import './index.css';
+
+// Usa el modo oscuro o claro a tu gusto, incluso para switchear entre ellos
+// Podras encontrar los archivos iniciales en la carpeta themes e ir configurandolos a tu gusto!
+import { darkTheme } from './themes/darkTheme';
+import { lightTheme } from './themes/lightTheme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <ThemeProvider theme={lightTheme}>
+    <CssBaseline />
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </ThemeProvider>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
